@@ -1,0 +1,55 @@
+name: Pandoc Arm Deps
+on: [push]
+jobs:
+
+  aarch64-texmath-0.12.0.1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: build
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        mkdir rootfs
+        mkdir bin
+        cd rootfs
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh .
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        sudo chroot . /build.sh texmath-0.12.0.1
+    - name: release
+      run: |
+        echo "${{ secrets.RSYNC_PASSWORD }}" > /etc/rsync.passwd
+        rsync -vz aarch64-texmath-0.12.0.1.tar.gz ${{ secrets.RSYNC_USER }}@${{ secrets.RSYNC_SERVER }} --password-file=/etc/rsync.passwd
+
+  armv7l-texmath-0.12.0.1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: build
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        mkdir rootfs
+        mkdir bin
+        cd rootfs
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh .
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        sudo chroot . /build.sh texmath-0.12.0.1
+    - name: release
+      run: |
+        echo "${{ secrets.RSYNC_PASSWORD }}" > /etc/rsync.passwd
+        rsync -vz armv7l-texmath-0.12.0.1.tar.gz ${{ secrets.RSYNC_USER }}@${{ secrets.RSYNC_SERVER }} --password-file=/etc/rsync.passwd
