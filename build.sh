@@ -15,8 +15,9 @@ cabal user-config init
 echo "v2-update"
 cabal v2-update
 
-echo "new-install $PKG"
-cabal new-install -v $PKG
+echo "v2-install $PKG"
+mkdir -p /home/runner/.cabal/store/ghc-8.6.5/package.db
+cabal v2-install -v $PKG
 
 
 tar zcvf $ARCH-$PKG.tar.gz /home/runner/.cabal/store/ghc-8.6.5/
