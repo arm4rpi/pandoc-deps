@@ -42,8 +42,7 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
       run: |
         ls -l
         export ID=\`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print \$2}' |tr -d ','\`
-        echo \$ID
-        curl -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/\$ID/assets?name=aarch64-$id.tar.gz" --data-binary @aarch64-$id.tar.gz
+        curl -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/\$ID/assets?name=aarch64-$id.tar.gz" --data-binary @rootfs/aarch64-$id.tar.gz
 
 
   armv7l-$jobid:
@@ -73,7 +72,6 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
       run: |
         ls -l
         export ID=\`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print \$2}' |tr -d ','\`
-        echo \$ID
-        curl -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/\$ID/assets?name=armv7l-$id.tar.gz" --data-binary @armv7l-$id.tar.gz
+        curl -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/\$ID/assets?name=armv7l-$id.tar.gz" --data-binary @rootfs/armv7l-$id.tar.gz
 EOF
 done
