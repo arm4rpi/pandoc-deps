@@ -25,7 +25,6 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
         mkdir rootfs
-        mkdir bin
         cd rootfs
         echo "decompression rootfs"
         tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
@@ -38,7 +37,7 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         sudo mount -t tmpfs tmpfs tmp
         sudo mount -t proc proc proc
         echo "chroot to arm"
-        sudo chroot . /build.sh $id
+        chroot . /build.sh $id
     - name: release
       run: |
         ID=\`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print $2}' |tr -d ','\`
@@ -55,7 +54,6 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
         mkdir rootfs
-        mkdir bin
         cd rootfs
         echo "decompression rootfs"
         tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
@@ -68,7 +66,7 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         sudo mount -t tmpfs tmpfs tmp
         sudo mount -t proc proc proc
         echo "chroot to arm"
-        sudo chroot . /build.sh $id
+        chroot . /build.sh $id
     - name: release
       run: |
         ID=\`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print $2}' |tr -d ','\`
