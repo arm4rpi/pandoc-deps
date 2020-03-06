@@ -37,7 +37,7 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         sudo mount -t tmpfs tmpfs tmp
         sudo mount -t proc proc proc
         echo "chroot to arm"
-        chroot . $id
+        sudo chroot . /$id
     - name: release
       run: |
         ID=\`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print $2}' |tr -d ','\`
@@ -66,7 +66,7 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         sudo mount -t tmpfs tmpfs tmp
         sudo mount -t proc proc proc
         echo "chroot to arm"
-        chroot . $id
+        sudo chroot . /$id
     - name: release
       run: |
         ID=\`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print $2}' |tr -d ','\`
