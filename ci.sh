@@ -27,7 +27,8 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         mkdir rootfs
         mkdir bin
         cd rootfs
-        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
         cp /usr/bin/qemu-aarch64-static usr/bin
         cp /etc/resolv.conf etc
         cp ../build.sh .
@@ -36,6 +37,7 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         sudo mount -t sysfs sysfs sys
         sudo mount -t tmpfs tmpfs tmp
         sudo mount -t proc proc proc
+        echo "chroot to arm"
         sudo chroot . /build.sh $id
     - name: release
       run: |
@@ -55,7 +57,8 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         mkdir rootfs
         mkdir bin
         cd rootfs
-        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
         cp /usr/bin/qemu-arm-static usr/bin
         cp /etc/resolv.conf etc
         cp ../build.sh .
@@ -64,6 +67,7 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         sudo mount -t sysfs sysfs sys
         sudo mount -t tmpfs tmpfs tmp
         sudo mount -t proc proc proc
+        echo "chroot to arm"
         sudo chroot . /build.sh $id
     - name: release
       run: |
