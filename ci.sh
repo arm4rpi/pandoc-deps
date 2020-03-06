@@ -18,6 +18,7 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
   aarch64-$jobid:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: build
       run: |
         sudo apt-get update
@@ -45,6 +46,7 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
   armv7l-$jobid:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: build
       run: |
         sudo apt-get update

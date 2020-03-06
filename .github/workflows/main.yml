@@ -5,6 +5,7 @@ jobs:
   aarch64-texmath-0_12_0_1:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: build
       run: |
         sudo apt-get update
@@ -32,6 +33,7 @@ jobs:
   armv7l-texmath-0_12_0_1:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: build
       run: |
         sudo apt-get update
