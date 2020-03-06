@@ -2,27 +2,23 @@
 
 set -e
 
-[ $# -lt 1 ] && echo "$0 pkg" && exit 1
-
 ARCH=`arch`
-
-echo "I am `whoami`, I will build $ARCH-$1"
-
-cd root
+PKG=`basename $0`
 
 apt-get update
 apt-get install -y cabal-install
 
+echo "I am `whoami`, I will build $ARCH-$PKG"
 echo "cabal init"
 cabal user-config init
 
 echo "v2-update"
 cabal v2-update
 
-echo "v2-install $1"
-cabal v2-install $1
+echo "v2-install $PKG"
+cabal v2-install $PKG
 
 
-tar zcvf $ARCH-$1.tar.gz /root/.cabal/store/ghc-8.6.5/
+tar zcvf $ARCH-$PKG.tar.gz /root/.cabal/store/ghc-8.6.5/
 
-echo "Finish $ARCH-$1.tar.gz"
+echo "Finish $ARCH-$PKG.tar.gz"
