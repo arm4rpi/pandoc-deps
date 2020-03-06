@@ -2,7 +2,7 @@ name: Pandoc Arm Deps
 on: [push]
 jobs:
 
-  aarch64-texmath-0.12.0.1:
+  aarch64-texmath-0_12_0_1:
     runs-on: ubuntu-latest
     steps:
     - name: build
@@ -25,10 +25,11 @@ jobs:
         sudo chroot . /build.sh texmath-0.12.0.1
     - name: release
       run: |
-        echo "${{ secrets.RSYNC_PASSWORD }}" > /etc/rsync.passwd
-        rsync -vz aarch64-texmath-0.12.0.1.tar.gz ${{ secrets.RSYNC_USER }}@${{ secrets.RSYNC_SERVER }} --password-file=/etc/rsync.passwd
+        ID=`curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print }' |tr -d ','`
+        curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/$ID/assets?name=aarch64-texmath-0.12.0.1.tar.gz" --data-binary @aarch64-texmath-0.12.0.1.tar.gz
 
-  armv7l-texmath-0.12.0.1:
+
+  armv7l-texmath-0_12_0_1:
     runs-on: ubuntu-latest
     steps:
     - name: build
@@ -51,5 +52,5 @@ jobs:
         sudo chroot . /build.sh texmath-0.12.0.1
     - name: release
       run: |
-        echo "${{ secrets.RSYNC_PASSWORD }}" > /etc/rsync.passwd
-        rsync -vz armv7l-texmath-0.12.0.1.tar.gz ${{ secrets.RSYNC_USER }}@${{ secrets.RSYNC_SERVER }} --password-file=/etc/rsync.passwd
+        ID=`curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print }' |tr -d ','`
+        curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/$ID/assets?name=armv7l-texmath-0.12.0.1.tar.gz" --data-binary @armv7l-texmath-0.12.0.1.tar.gz

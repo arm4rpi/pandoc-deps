@@ -12,9 +12,10 @@ jobs:
 EOF
 
 for id in `cat deps.txt |grep -v "#" |sort -u`;do
+	jobid=`echo $id|tr '.' '_'`
 	cat >> $CICONF <<EOF
 
-  aarch64-$id:
+  aarch64-$jobid:
     runs-on: ubuntu-latest
     steps:
     - name: build
@@ -37,11 +38,11 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         sudo chroot . /build.sh $id
     - name: release
       run: |
-        ID=`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print $2}' |tr -d ','`
-		curl -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/\$ID/assets?name=aarch64-$id.tar.gz" --data-binary @aarch64-$id.tar.gz
+        ID=\`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print $2}' |tr -d ','\`
+        curl -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/\$ID/assets?name=aarch64-$id.tar.gz" --data-binary @aarch64-$id.tar.gz
 
 
-  armv7l-$id:
+  armv7l-$jobid:
     runs-on: ubuntu-latest
     steps:
     - name: build
@@ -64,7 +65,7 @@ for id in `cat deps.txt |grep -v "#" |sort -u`;do
         sudo chroot . /build.sh $id
     - name: release
       run: |
-        ID=`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print $2}' |tr -d ','`
-		curl -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/\$ID/assets?name=arm-$id.tar.gz" --data-binary @arm-$id.tar.gz
+        ID=\`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print $2}' |tr -d ','\`
+        curl -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/\$ID/assets?name=armv7l-$id.tar.gz" --data-binary @armv7l-$id.tar.gz
 EOF
 done
