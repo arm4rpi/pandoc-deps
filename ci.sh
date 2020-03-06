@@ -11,7 +11,7 @@ on: [push]
 jobs:
 EOF
 
-for id in `cat deps.txt |grep -v "#" |sort -u`;do
+for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
 	jobid=`echo $id|tr '.' '_'`
 	cat >> $CICONF <<EOF
 

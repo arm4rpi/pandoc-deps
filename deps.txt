@@ -1,1 +1,30 @@
+# pandoc
+pandoc-types-1.20
 texmath-0.12.0.1
+haddock-library-1.8.0
+skylighting-0.8.3.2
+skylighting-core-0.8.3.2
+regex-pcre-builtin-0.95.0.8.8.35
+doclayout-0.3
+emojis-0.1
+jira-wiki-markup-1.0.0
+HsYAML-0.2.0.0
+HsYAML-aeson-0.2.0.0
+doctemplates-0.8.1
+
+# pandoc-citeproc
+HsYAML-0.2.0.0
+HsYAML-aeson-0.2.0.0
+haddock-library-1.8.0
+skylighting-0.8.3.2
+skylighting-core-0.8.3.2
+regex-pcre-builtin-0.95.0.8.8.35
+doctemplates-0.8.1
+doclayout-0.3
+emojis-0.1
+texmath-0.12
+pandoc-types-1.20
+jira-wiki-markup-1.0.0
+
+# pandoc-crossref
+roman-numerals-0.5.1.5
