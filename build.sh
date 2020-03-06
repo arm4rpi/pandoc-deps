@@ -23,3 +23,4 @@ cabal v2-install -v $PKG
 tar zcvf $ARCH-$PKG.tar.gz /home/runner/.cabal/store/ghc-8.6.5/
 
 echo "Finish $ARCH-$PKG.tar.gz"
+ls -l
