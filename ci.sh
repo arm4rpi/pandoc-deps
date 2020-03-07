@@ -49,7 +49,7 @@ function addJob() {
         echo "chroot to arm"
         sudo chroot . /$id
         echo "Upload Asset"
-        curl -H "Authorization: token \${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=$arch-$id.tar.gz" --data-binary @rootfs/$arch-$id.tar.gz
+        curl -H "Authorization: token \${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=$arch-$id.tar.gz" --data-binary @$arch-$id.tar.gz
 EOF
 }
 
