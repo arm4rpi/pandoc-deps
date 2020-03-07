@@ -40,14 +40,12 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
         sudo chroot . /$id
     - name: Upload Release Asset
       id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+      uses: svenstaro/upload-release-action@v1-release
       with:
-        upload_url: https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-$id.tar.gz
-        asset_path: ./rootfs/aarch64-$id.tar.gz
-        asset_name: aarch64-$id.tar.gz
-        asset_content_type: application/x-gzip
+        repo_token: \${{ secrets.GITHUB_TOKEN }}
+        file: ./rootfs/aarch64-$id.tar.gz
+        tag: v0.1
+        overwrite: true
 
   armv7l-$jobid:
     runs-on: ubuntu-latest
@@ -74,13 +72,11 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
         sudo chroot . /$id
     - name: Upload Release Asset
       id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+      uses: svenstaro/upload-release-action@v1-release
       with:
-        upload_url: https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-$id.tar.gz
-        asset_path: ./rootfs/armv7l-$id.tar.gz
-        asset_name: armv7l-$id.tar.gz
-        asset_content_type: application/x-gzip
+        repo_token: \${{ secrets.GITHUB_TOKEN }}
+        file: ./rootfs/armv7l-$id.tar.gz
+        tag: v0.1
+        overwrite: true
 EOF
 done
