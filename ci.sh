@@ -11,28 +11,34 @@ on: [push]
 jobs:
 EOF
 
-for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
+function addJob() {
+	id=$1
+	arch=$2
 	jobid=`echo $id|tr '.' '_'`
+	qemuarch=aarch64
+	ubuntuarch=arm64
+	[ "$arch"x == "armv7l"x ] && qemuarch="arm" && ubuntuarch="armhf"
+
 	cat >> $CICONF <<EOF
 
-  aarch64-$jobid:
+  $arch-$jobid:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: build
       run: |
         mkdir rootfs
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-$id.tar.gz" -o rootfs/aarch64-$id.tar.gz
-        MIME=\`file -b --mime-type rootfs/aarch64-$id.tar.gz\`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/$arch-$id.tar.gz" -o rootfs/$arch-$id.tar.gz
+        MIME=\`file -b --mime-type rootfs/$arch-$id.tar.gz\`
         echo \$MIME
         [ "\$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
-        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-$ubuntuarch.tar.gz
         cd rootfs
         echo "decompression rootfs"
-        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
-        cp /usr/bin/qemu-aarch64-static usr/bin
+        tar xvf ../ubuntu-base-19.10-base-$ubuntuarch.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-$qemuarch-static usr/bin
         cp /etc/resolv.conf etc
         cp ../build.sh $id
         sudo mount -t devtmpfs devtmpfs dev
@@ -47,46 +53,14 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
       uses: svenstaro/upload-release-action@v1-release
       with:
         repo_token: \${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-$id.tar.gz
-        asset_name: aarch64-$id.tar.gz
-        tag: v0.1
-        overwrite: true
-
-  armv7l-$jobid:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: build
-      run: |
-        mkdir rootfs
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-$id.tar.gz" -o rootfs/armv7l-$id.tar.gz
-        MIME=\`file -b --mime-type rootfs/armv7l-$id.tar.gz\`
-        echo \$MIME
-        [ "\$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
-        sudo apt-get update
-        sudo apt-get install -y qemu-user-static aria2
-        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
-        cd rootfs
-        echo "decompression rootfs"
-        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
-        cp /usr/bin/qemu-arm-static usr/bin
-        cp /etc/resolv.conf etc
-        cp ../build.sh $id
-        sudo mount -t devtmpfs devtmpfs dev
-        sudo mount -t devpts devpts dev/pts
-        sudo mount -t sysfs sysfs sys
-        sudo mount -t tmpfs tmpfs tmp
-        sudo mount -t proc proc proc
-        echo "chroot to arm"
-        sudo chroot . /$id
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: \${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-$id.tar.gz
-        asset_name: armv7l-$id.tar.gz
+        file: ./rootfs/$arch-$id.tar.gz
+        asset_name: $arch-$id.tar.gz
         tag: v0.1
         overwrite: true
 EOF
+}
+
+for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
+	addJob $id aarch64
+	addJob $id armv7l
 done
