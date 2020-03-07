@@ -44,6 +44,7 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
       with:
         repo_token: \${{ secrets.GITHUB_TOKEN }}
         file: ./rootfs/aarch64-$id.tar.gz
+        asset_name: aarch64-$id.tar.gz
         tag: v0.1
         overwrite: true
 
@@ -76,6 +77,7 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
       with:
         repo_token: \${{ secrets.GITHUB_TOKEN }}
         file: ./rootfs/armv7l-$id.tar.gz
+        asset_name: armv7l-$id.tar.gz
         tag: v0.1
         overwrite: true
 EOF
