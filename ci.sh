@@ -42,7 +42,7 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: \${{ secrets.GITHUB_TOKEN }}
+        repo_token: \${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-$id.tar.gz
         asset_name: aarch64-$id.tar.gz
         tag: v0.1
@@ -75,7 +75,7 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: \${{ secrets.GITHUB_TOKEN }}
+        repo_token: \${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-$id.tar.gz
         asset_name: armv7l-$id.tar.gz
         tag: v0.1

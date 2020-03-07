@@ -29,7 +29,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-doclayout-0.3.tar.gz
         asset_name: aarch64-doclayout-0.3.tar.gz
         tag: v0.1
@@ -62,7 +62,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-doclayout-0.3.tar.gz
         asset_name: armv7l-doclayout-0.3.tar.gz
         tag: v0.1
@@ -95,7 +95,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-doctemplates-0.8.1.tar.gz
         asset_name: aarch64-doctemplates-0.8.1.tar.gz
         tag: v0.1
@@ -128,7 +128,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-doctemplates-0.8.1.tar.gz
         asset_name: armv7l-doctemplates-0.8.1.tar.gz
         tag: v0.1
@@ -161,7 +161,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-emojis-0.1.tar.gz
         asset_name: aarch64-emojis-0.1.tar.gz
         tag: v0.1
@@ -194,7 +194,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-emojis-0.1.tar.gz
         asset_name: armv7l-emojis-0.1.tar.gz
         tag: v0.1
@@ -227,7 +227,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-haddock-library-1.8.0.tar.gz
         asset_name: aarch64-haddock-library-1.8.0.tar.gz
         tag: v0.1
@@ -260,7 +260,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-haddock-library-1.8.0.tar.gz
         asset_name: armv7l-haddock-library-1.8.0.tar.gz
         tag: v0.1
@@ -293,7 +293,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-HsYAML-0.2.0.0.tar.gz
         asset_name: aarch64-HsYAML-0.2.0.0.tar.gz
         tag: v0.1
@@ -326,7 +326,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-HsYAML-0.2.0.0.tar.gz
         asset_name: armv7l-HsYAML-0.2.0.0.tar.gz
         tag: v0.1
@@ -359,7 +359,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-HsYAML-aeson-0.2.0.0.tar.gz
         asset_name: aarch64-HsYAML-aeson-0.2.0.0.tar.gz
         tag: v0.1
@@ -392,7 +392,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-HsYAML-aeson-0.2.0.0.tar.gz
         asset_name: armv7l-HsYAML-aeson-0.2.0.0.tar.gz
         tag: v0.1
@@ -425,7 +425,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-jira-wiki-markup-1.0.0.tar.gz
         asset_name: aarch64-jira-wiki-markup-1.0.0.tar.gz
         tag: v0.1
@@ -458,7 +458,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-jira-wiki-markup-1.0.0.tar.gz
         asset_name: armv7l-jira-wiki-markup-1.0.0.tar.gz
         tag: v0.1
@@ -491,7 +491,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-pandoc-types-1.20.tar.gz
         asset_name: aarch64-pandoc-types-1.20.tar.gz
         tag: v0.1
@@ -524,7 +524,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-pandoc-types-1.20.tar.gz
         asset_name: armv7l-pandoc-types-1.20.tar.gz
         tag: v0.1
@@ -557,7 +557,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
         asset_name: aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
         tag: v0.1
@@ -590,7 +590,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
         asset_name: armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
         tag: v0.1
@@ -623,7 +623,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-roman-numerals-0.5.1.5.tar.gz
         asset_name: aarch64-roman-numerals-0.5.1.5.tar.gz
         tag: v0.1
@@ -656,7 +656,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-roman-numerals-0.5.1.5.tar.gz
         asset_name: armv7l-roman-numerals-0.5.1.5.tar.gz
         tag: v0.1
@@ -689,7 +689,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-skylighting-0.8.3.2.tar.gz
         asset_name: aarch64-skylighting-0.8.3.2.tar.gz
         tag: v0.1
@@ -722,7 +722,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-skylighting-0.8.3.2.tar.gz
         asset_name: armv7l-skylighting-0.8.3.2.tar.gz
         tag: v0.1
@@ -755,7 +755,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-skylighting-core-0.8.3.2.tar.gz
         asset_name: aarch64-skylighting-core-0.8.3.2.tar.gz
         tag: v0.1
@@ -788,7 +788,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-skylighting-core-0.8.3.2.tar.gz
         asset_name: armv7l-skylighting-core-0.8.3.2.tar.gz
         tag: v0.1
@@ -821,7 +821,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-texmath-0.12.tar.gz
         asset_name: aarch64-texmath-0.12.tar.gz
         tag: v0.1
@@ -854,7 +854,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-texmath-0.12.tar.gz
         asset_name: armv7l-texmath-0.12.tar.gz
         tag: v0.1
@@ -887,7 +887,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/aarch64-texmath-0.12.0.1.tar.gz
         asset_name: aarch64-texmath-0.12.0.1.tar.gz
         tag: v0.1
@@ -920,7 +920,7 @@ jobs:
       id: upload-release-asset 
       uses: svenstaro/upload-release-action@v1-release
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
         file: ./rootfs/armv7l-texmath-0.12.0.1.tar.gz
         asset_name: armv7l-texmath-0.12.0.1.tar.gz
         tag: v0.1
