@@ -8,10 +8,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-doclayout-0.3.tar.gz" -o aarch64-doclayout-0.3.tar.gz
-        MIME=`file -b --mime-type aarch64-doclayout-0.3.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-doclayout-0.3.tar.gz" -o rootfs/aarch64-doclayout-0.3.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-doclayout-0.3.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -45,8 +45,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-doclayout-0.3.tar.gz" -o armv7l-doclayout-0.3.tar.gz
-        MIME=`file -b --mime-type armv7l-doclayout-0.3.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-doclayout-0.3.tar.gz" -o rootfs/armv7l-doclayout-0.3.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-doclayout-0.3.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -82,10 +82,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-doctemplates-0.8.1.tar.gz" -o aarch64-doctemplates-0.8.1.tar.gz
-        MIME=`file -b --mime-type aarch64-doctemplates-0.8.1.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-doctemplates-0.8.1.tar.gz" -o rootfs/aarch64-doctemplates-0.8.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-doctemplates-0.8.1.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -119,8 +119,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-doctemplates-0.8.1.tar.gz" -o armv7l-doctemplates-0.8.1.tar.gz
-        MIME=`file -b --mime-type armv7l-doctemplates-0.8.1.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-doctemplates-0.8.1.tar.gz" -o rootfs/armv7l-doctemplates-0.8.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-doctemplates-0.8.1.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -156,10 +156,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-emojis-0.1.tar.gz" -o aarch64-emojis-0.1.tar.gz
-        MIME=`file -b --mime-type aarch64-emojis-0.1.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-emojis-0.1.tar.gz" -o rootfs/aarch64-emojis-0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-emojis-0.1.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -193,8 +193,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-emojis-0.1.tar.gz" -o armv7l-emojis-0.1.tar.gz
-        MIME=`file -b --mime-type armv7l-emojis-0.1.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-emojis-0.1.tar.gz" -o rootfs/armv7l-emojis-0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-emojis-0.1.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -230,10 +230,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-haddock-library-1.8.0.tar.gz" -o aarch64-haddock-library-1.8.0.tar.gz
-        MIME=`file -b --mime-type aarch64-haddock-library-1.8.0.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-haddock-library-1.8.0.tar.gz" -o rootfs/aarch64-haddock-library-1.8.0.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-haddock-library-1.8.0.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -267,8 +267,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-haddock-library-1.8.0.tar.gz" -o armv7l-haddock-library-1.8.0.tar.gz
-        MIME=`file -b --mime-type armv7l-haddock-library-1.8.0.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-haddock-library-1.8.0.tar.gz" -o rootfs/armv7l-haddock-library-1.8.0.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-haddock-library-1.8.0.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -304,10 +304,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-HsYAML-0.2.0.0.tar.gz" -o aarch64-HsYAML-0.2.0.0.tar.gz
-        MIME=`file -b --mime-type aarch64-HsYAML-0.2.0.0.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-HsYAML-0.2.0.0.tar.gz" -o rootfs/aarch64-HsYAML-0.2.0.0.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-HsYAML-0.2.0.0.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -341,8 +341,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-HsYAML-0.2.0.0.tar.gz" -o armv7l-HsYAML-0.2.0.0.tar.gz
-        MIME=`file -b --mime-type armv7l-HsYAML-0.2.0.0.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-HsYAML-0.2.0.0.tar.gz" -o rootfs/armv7l-HsYAML-0.2.0.0.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-HsYAML-0.2.0.0.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -378,10 +378,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-HsYAML-aeson-0.2.0.0.tar.gz" -o aarch64-HsYAML-aeson-0.2.0.0.tar.gz
-        MIME=`file -b --mime-type aarch64-HsYAML-aeson-0.2.0.0.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-HsYAML-aeson-0.2.0.0.tar.gz" -o rootfs/aarch64-HsYAML-aeson-0.2.0.0.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-HsYAML-aeson-0.2.0.0.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -415,8 +415,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-HsYAML-aeson-0.2.0.0.tar.gz" -o armv7l-HsYAML-aeson-0.2.0.0.tar.gz
-        MIME=`file -b --mime-type armv7l-HsYAML-aeson-0.2.0.0.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-HsYAML-aeson-0.2.0.0.tar.gz" -o rootfs/armv7l-HsYAML-aeson-0.2.0.0.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-HsYAML-aeson-0.2.0.0.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -452,10 +452,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-jira-wiki-markup-1.0.0.tar.gz" -o aarch64-jira-wiki-markup-1.0.0.tar.gz
-        MIME=`file -b --mime-type aarch64-jira-wiki-markup-1.0.0.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-jira-wiki-markup-1.0.0.tar.gz" -o rootfs/aarch64-jira-wiki-markup-1.0.0.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-jira-wiki-markup-1.0.0.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -489,8 +489,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-jira-wiki-markup-1.0.0.tar.gz" -o armv7l-jira-wiki-markup-1.0.0.tar.gz
-        MIME=`file -b --mime-type armv7l-jira-wiki-markup-1.0.0.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-jira-wiki-markup-1.0.0.tar.gz" -o rootfs/armv7l-jira-wiki-markup-1.0.0.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-jira-wiki-markup-1.0.0.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -526,10 +526,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-pandoc-types-1.20.tar.gz" -o aarch64-pandoc-types-1.20.tar.gz
-        MIME=`file -b --mime-type aarch64-pandoc-types-1.20.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-pandoc-types-1.20.tar.gz" -o rootfs/aarch64-pandoc-types-1.20.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-pandoc-types-1.20.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -563,8 +563,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-pandoc-types-1.20.tar.gz" -o armv7l-pandoc-types-1.20.tar.gz
-        MIME=`file -b --mime-type armv7l-pandoc-types-1.20.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-pandoc-types-1.20.tar.gz" -o rootfs/armv7l-pandoc-types-1.20.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-pandoc-types-1.20.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -600,10 +600,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz" -o aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
-        MIME=`file -b --mime-type aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz" -o rootfs/aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -637,8 +637,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz" -o armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
-        MIME=`file -b --mime-type armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz" -o rootfs/armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -674,10 +674,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-roman-numerals-0.5.1.5.tar.gz" -o aarch64-roman-numerals-0.5.1.5.tar.gz
-        MIME=`file -b --mime-type aarch64-roman-numerals-0.5.1.5.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-roman-numerals-0.5.1.5.tar.gz" -o rootfs/aarch64-roman-numerals-0.5.1.5.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-roman-numerals-0.5.1.5.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -711,8 +711,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-roman-numerals-0.5.1.5.tar.gz" -o armv7l-roman-numerals-0.5.1.5.tar.gz
-        MIME=`file -b --mime-type armv7l-roman-numerals-0.5.1.5.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-roman-numerals-0.5.1.5.tar.gz" -o rootfs/armv7l-roman-numerals-0.5.1.5.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-roman-numerals-0.5.1.5.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -748,10 +748,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-skylighting-0.8.3.2.tar.gz" -o aarch64-skylighting-0.8.3.2.tar.gz
-        MIME=`file -b --mime-type aarch64-skylighting-0.8.3.2.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-skylighting-0.8.3.2.tar.gz" -o rootfs/aarch64-skylighting-0.8.3.2.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-skylighting-0.8.3.2.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -785,8 +785,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-skylighting-0.8.3.2.tar.gz" -o armv7l-skylighting-0.8.3.2.tar.gz
-        MIME=`file -b --mime-type armv7l-skylighting-0.8.3.2.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-skylighting-0.8.3.2.tar.gz" -o rootfs/armv7l-skylighting-0.8.3.2.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-skylighting-0.8.3.2.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -822,10 +822,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-skylighting-core-0.8.3.2.tar.gz" -o aarch64-skylighting-core-0.8.3.2.tar.gz
-        MIME=`file -b --mime-type aarch64-skylighting-core-0.8.3.2.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-skylighting-core-0.8.3.2.tar.gz" -o rootfs/aarch64-skylighting-core-0.8.3.2.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-skylighting-core-0.8.3.2.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -859,8 +859,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-skylighting-core-0.8.3.2.tar.gz" -o armv7l-skylighting-core-0.8.3.2.tar.gz
-        MIME=`file -b --mime-type armv7l-skylighting-core-0.8.3.2.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-skylighting-core-0.8.3.2.tar.gz" -o rootfs/armv7l-skylighting-core-0.8.3.2.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-skylighting-core-0.8.3.2.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -896,10 +896,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-texmath-0.12.tar.gz" -o aarch64-texmath-0.12.tar.gz
-        MIME=`file -b --mime-type aarch64-texmath-0.12.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-texmath-0.12.tar.gz" -o rootfs/aarch64-texmath-0.12.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-texmath-0.12.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -933,8 +933,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-texmath-0.12.tar.gz" -o armv7l-texmath-0.12.tar.gz
-        MIME=`file -b --mime-type armv7l-texmath-0.12.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-texmath-0.12.tar.gz" -o rootfs/armv7l-texmath-0.12.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-texmath-0.12.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -970,10 +970,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-texmath-0.12.0.1.tar.gz" -o aarch64-texmath-0.12.0.1.tar.gz
-        MIME=`file -b --mime-type aarch64-texmath-0.12.0.1.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-texmath-0.12.0.1.tar.gz" -o rootfs/aarch64-texmath-0.12.0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-texmath-0.12.0.1.tar.gz`
         echo $MIME
-        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
         sudo apt-get install -y qemu-user-static aria2
         aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
@@ -1007,8 +1007,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: build
       run: |
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-texmath-0.12.0.1.tar.gz" -o armv7l-texmath-0.12.0.1.tar.gz
-        MIME=`file -b --mime-type armv7l-texmath-0.12.0.1.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-texmath-0.12.0.1.tar.gz" -o rootfs/armv7l-texmath-0.12.0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-texmath-0.12.0.1.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
