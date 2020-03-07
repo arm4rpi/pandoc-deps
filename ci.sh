@@ -48,15 +48,8 @@ function addJob() {
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /$id
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: \${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/$arch-$id.tar.gz
-        asset_name: $arch-$id.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token \${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=$arch-$id.tar.gz" --data-binary @rootfs/$arch-$id.tar.gz
 EOF
 }
 

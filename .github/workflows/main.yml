@@ -29,15 +29,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /doclayout-0.3
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-doclayout-0.3.tar.gz
-        asset_name: aarch64-doclayout-0.3.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-doclayout-0.3.tar.gz" --data-binary @rootfs/aarch64-doclayout-0.3.tar.gz
 
   armv7l-doclayout-0_3:
     runs-on: ubuntu-latest
@@ -66,15 +59,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /doclayout-0.3
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-doclayout-0.3.tar.gz
-        asset_name: armv7l-doclayout-0.3.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-doclayout-0.3.tar.gz" --data-binary @rootfs/armv7l-doclayout-0.3.tar.gz
 
   aarch64-doctemplates-0_8_1:
     runs-on: ubuntu-latest
@@ -103,15 +89,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /doctemplates-0.8.1
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-doctemplates-0.8.1.tar.gz
-        asset_name: aarch64-doctemplates-0.8.1.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-doctemplates-0.8.1.tar.gz" --data-binary @rootfs/aarch64-doctemplates-0.8.1.tar.gz
 
   armv7l-doctemplates-0_8_1:
     runs-on: ubuntu-latest
@@ -140,15 +119,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /doctemplates-0.8.1
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-doctemplates-0.8.1.tar.gz
-        asset_name: armv7l-doctemplates-0.8.1.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-doctemplates-0.8.1.tar.gz" --data-binary @rootfs/armv7l-doctemplates-0.8.1.tar.gz
 
   aarch64-emojis-0_1:
     runs-on: ubuntu-latest
@@ -177,15 +149,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /emojis-0.1
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-emojis-0.1.tar.gz
-        asset_name: aarch64-emojis-0.1.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-emojis-0.1.tar.gz" --data-binary @rootfs/aarch64-emojis-0.1.tar.gz
 
   armv7l-emojis-0_1:
     runs-on: ubuntu-latest
@@ -214,15 +179,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /emojis-0.1
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-emojis-0.1.tar.gz
-        asset_name: armv7l-emojis-0.1.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-emojis-0.1.tar.gz" --data-binary @rootfs/armv7l-emojis-0.1.tar.gz
 
   aarch64-haddock-library-1_8_0:
     runs-on: ubuntu-latest
@@ -251,15 +209,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /haddock-library-1.8.0
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-haddock-library-1.8.0.tar.gz
-        asset_name: aarch64-haddock-library-1.8.0.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-haddock-library-1.8.0.tar.gz" --data-binary @rootfs/aarch64-haddock-library-1.8.0.tar.gz
 
   armv7l-haddock-library-1_8_0:
     runs-on: ubuntu-latest
@@ -288,15 +239,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /haddock-library-1.8.0
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-haddock-library-1.8.0.tar.gz
-        asset_name: armv7l-haddock-library-1.8.0.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-haddock-library-1.8.0.tar.gz" --data-binary @rootfs/armv7l-haddock-library-1.8.0.tar.gz
 
   aarch64-HsYAML-0_2_0_0:
     runs-on: ubuntu-latest
@@ -325,15 +269,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /HsYAML-0.2.0.0
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-HsYAML-0.2.0.0.tar.gz
-        asset_name: aarch64-HsYAML-0.2.0.0.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-HsYAML-0.2.0.0.tar.gz" --data-binary @rootfs/aarch64-HsYAML-0.2.0.0.tar.gz
 
   armv7l-HsYAML-0_2_0_0:
     runs-on: ubuntu-latest
@@ -362,15 +299,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /HsYAML-0.2.0.0
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-HsYAML-0.2.0.0.tar.gz
-        asset_name: armv7l-HsYAML-0.2.0.0.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-HsYAML-0.2.0.0.tar.gz" --data-binary @rootfs/armv7l-HsYAML-0.2.0.0.tar.gz
 
   aarch64-HsYAML-aeson-0_2_0_0:
     runs-on: ubuntu-latest
@@ -399,15 +329,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /HsYAML-aeson-0.2.0.0
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-HsYAML-aeson-0.2.0.0.tar.gz
-        asset_name: aarch64-HsYAML-aeson-0.2.0.0.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-HsYAML-aeson-0.2.0.0.tar.gz" --data-binary @rootfs/aarch64-HsYAML-aeson-0.2.0.0.tar.gz
 
   armv7l-HsYAML-aeson-0_2_0_0:
     runs-on: ubuntu-latest
@@ -436,15 +359,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /HsYAML-aeson-0.2.0.0
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-HsYAML-aeson-0.2.0.0.tar.gz
-        asset_name: armv7l-HsYAML-aeson-0.2.0.0.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-HsYAML-aeson-0.2.0.0.tar.gz" --data-binary @rootfs/armv7l-HsYAML-aeson-0.2.0.0.tar.gz
 
   aarch64-jira-wiki-markup-1_0_0:
     runs-on: ubuntu-latest
@@ -473,15 +389,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /jira-wiki-markup-1.0.0
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-jira-wiki-markup-1.0.0.tar.gz
-        asset_name: aarch64-jira-wiki-markup-1.0.0.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-jira-wiki-markup-1.0.0.tar.gz" --data-binary @rootfs/aarch64-jira-wiki-markup-1.0.0.tar.gz
 
   armv7l-jira-wiki-markup-1_0_0:
     runs-on: ubuntu-latest
@@ -510,15 +419,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /jira-wiki-markup-1.0.0
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-jira-wiki-markup-1.0.0.tar.gz
-        asset_name: armv7l-jira-wiki-markup-1.0.0.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-jira-wiki-markup-1.0.0.tar.gz" --data-binary @rootfs/armv7l-jira-wiki-markup-1.0.0.tar.gz
 
   aarch64-pandoc-types-1_20:
     runs-on: ubuntu-latest
@@ -547,15 +449,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /pandoc-types-1.20
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-pandoc-types-1.20.tar.gz
-        asset_name: aarch64-pandoc-types-1.20.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-pandoc-types-1.20.tar.gz" --data-binary @rootfs/aarch64-pandoc-types-1.20.tar.gz
 
   armv7l-pandoc-types-1_20:
     runs-on: ubuntu-latest
@@ -584,15 +479,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /pandoc-types-1.20
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-pandoc-types-1.20.tar.gz
-        asset_name: armv7l-pandoc-types-1.20.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-pandoc-types-1.20.tar.gz" --data-binary @rootfs/armv7l-pandoc-types-1.20.tar.gz
 
   aarch64-regex-pcre-builtin-0_95_0_8_8_35:
     runs-on: ubuntu-latest
@@ -621,15 +509,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /regex-pcre-builtin-0.95.0.8.8.35
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
-        asset_name: aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz" --data-binary @rootfs/aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
 
   armv7l-regex-pcre-builtin-0_95_0_8_8_35:
     runs-on: ubuntu-latest
@@ -658,15 +539,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /regex-pcre-builtin-0.95.0.8.8.35
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
-        asset_name: armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz" --data-binary @rootfs/armv7l-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
 
   aarch64-roman-numerals-0_5_1_5:
     runs-on: ubuntu-latest
@@ -695,15 +569,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /roman-numerals-0.5.1.5
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-roman-numerals-0.5.1.5.tar.gz
-        asset_name: aarch64-roman-numerals-0.5.1.5.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-roman-numerals-0.5.1.5.tar.gz" --data-binary @rootfs/aarch64-roman-numerals-0.5.1.5.tar.gz
 
   armv7l-roman-numerals-0_5_1_5:
     runs-on: ubuntu-latest
@@ -732,15 +599,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /roman-numerals-0.5.1.5
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-roman-numerals-0.5.1.5.tar.gz
-        asset_name: armv7l-roman-numerals-0.5.1.5.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-roman-numerals-0.5.1.5.tar.gz" --data-binary @rootfs/armv7l-roman-numerals-0.5.1.5.tar.gz
 
   aarch64-skylighting-0_8_3_2:
     runs-on: ubuntu-latest
@@ -769,15 +629,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /skylighting-0.8.3.2
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-skylighting-0.8.3.2.tar.gz
-        asset_name: aarch64-skylighting-0.8.3.2.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-skylighting-0.8.3.2.tar.gz" --data-binary @rootfs/aarch64-skylighting-0.8.3.2.tar.gz
 
   armv7l-skylighting-0_8_3_2:
     runs-on: ubuntu-latest
@@ -806,15 +659,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /skylighting-0.8.3.2
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-skylighting-0.8.3.2.tar.gz
-        asset_name: armv7l-skylighting-0.8.3.2.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-skylighting-0.8.3.2.tar.gz" --data-binary @rootfs/armv7l-skylighting-0.8.3.2.tar.gz
 
   aarch64-skylighting-core-0_8_3_2:
     runs-on: ubuntu-latest
@@ -843,15 +689,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /skylighting-core-0.8.3.2
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-skylighting-core-0.8.3.2.tar.gz
-        asset_name: aarch64-skylighting-core-0.8.3.2.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-skylighting-core-0.8.3.2.tar.gz" --data-binary @rootfs/aarch64-skylighting-core-0.8.3.2.tar.gz
 
   armv7l-skylighting-core-0_8_3_2:
     runs-on: ubuntu-latest
@@ -880,15 +719,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /skylighting-core-0.8.3.2
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-skylighting-core-0.8.3.2.tar.gz
-        asset_name: armv7l-skylighting-core-0.8.3.2.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-skylighting-core-0.8.3.2.tar.gz" --data-binary @rootfs/armv7l-skylighting-core-0.8.3.2.tar.gz
 
   aarch64-texmath-0_12:
     runs-on: ubuntu-latest
@@ -917,15 +749,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /texmath-0.12
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-texmath-0.12.tar.gz
-        asset_name: aarch64-texmath-0.12.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-texmath-0.12.tar.gz" --data-binary @rootfs/aarch64-texmath-0.12.tar.gz
 
   armv7l-texmath-0_12:
     runs-on: ubuntu-latest
@@ -954,15 +779,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /texmath-0.12
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-texmath-0.12.tar.gz
-        asset_name: armv7l-texmath-0.12.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-texmath-0.12.tar.gz" --data-binary @rootfs/armv7l-texmath-0.12.tar.gz
 
   aarch64-texmath-0_12_0_1:
     runs-on: ubuntu-latest
@@ -991,15 +809,8 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /texmath-0.12.0.1
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/aarch64-texmath-0.12.0.1.tar.gz
-        asset_name: aarch64-texmath-0.12.0.1.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-texmath-0.12.0.1.tar.gz" --data-binary @rootfs/aarch64-texmath-0.12.0.1.tar.gz
 
   armv7l-texmath-0_12_0_1:
     runs-on: ubuntu-latest
@@ -1028,12 +839,5 @@ jobs:
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /texmath-0.12.0.1
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.TOKEN }} # See: https://github.community/t5/GitHub-Actions/error-Bad-credentials/td-p/33500
-        file: ./rootfs/armv7l-texmath-0.12.0.1.tar.gz
-        asset_name: armv7l-texmath-0.12.0.1.tar.gz
-        tag: v0.1
-        overwrite: true
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-texmath-0.12.0.1.tar.gz" --data-binary @rootfs/armv7l-texmath-0.12.0.1.tar.gz
