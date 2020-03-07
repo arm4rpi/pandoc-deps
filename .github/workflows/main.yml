@@ -6,6 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-doclayout-0.3.tar.gz" -o aarch64-doclayout-0.3.tar.gz
+        MIME=`file -b --mine-type aarch64-doclayout-0.3.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -39,6 +44,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-doclayout-0.3.tar.gz" -o aarch64-doclayout-0.3.tar.gz
+        MIME=`file -b --mine-type aarch64-doclayout-0.3.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -72,6 +82,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-doctemplates-0.8.1.tar.gz" -o aarch64-doctemplates-0.8.1.tar.gz
+        MIME=`file -b --mine-type aarch64-doctemplates-0.8.1.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -105,6 +120,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-doctemplates-0.8.1.tar.gz" -o aarch64-doctemplates-0.8.1.tar.gz
+        MIME=`file -b --mine-type aarch64-doctemplates-0.8.1.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -138,6 +158,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-emojis-0.1.tar.gz" -o aarch64-emojis-0.1.tar.gz
+        MIME=`file -b --mine-type aarch64-emojis-0.1.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -171,6 +196,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-emojis-0.1.tar.gz" -o aarch64-emojis-0.1.tar.gz
+        MIME=`file -b --mine-type aarch64-emojis-0.1.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -204,6 +234,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-haddock-library-1.8.0.tar.gz" -o aarch64-haddock-library-1.8.0.tar.gz
+        MIME=`file -b --mine-type aarch64-haddock-library-1.8.0.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -237,6 +272,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-haddock-library-1.8.0.tar.gz" -o aarch64-haddock-library-1.8.0.tar.gz
+        MIME=`file -b --mine-type aarch64-haddock-library-1.8.0.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -270,6 +310,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-HsYAML-0.2.0.0.tar.gz" -o aarch64-HsYAML-0.2.0.0.tar.gz
+        MIME=`file -b --mine-type aarch64-HsYAML-0.2.0.0.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -303,6 +348,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-HsYAML-0.2.0.0.tar.gz" -o aarch64-HsYAML-0.2.0.0.tar.gz
+        MIME=`file -b --mine-type aarch64-HsYAML-0.2.0.0.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -336,6 +386,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-HsYAML-aeson-0.2.0.0.tar.gz" -o aarch64-HsYAML-aeson-0.2.0.0.tar.gz
+        MIME=`file -b --mine-type aarch64-HsYAML-aeson-0.2.0.0.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -369,6 +424,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-HsYAML-aeson-0.2.0.0.tar.gz" -o aarch64-HsYAML-aeson-0.2.0.0.tar.gz
+        MIME=`file -b --mine-type aarch64-HsYAML-aeson-0.2.0.0.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -402,6 +462,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-jira-wiki-markup-1.0.0.tar.gz" -o aarch64-jira-wiki-markup-1.0.0.tar.gz
+        MIME=`file -b --mine-type aarch64-jira-wiki-markup-1.0.0.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -435,6 +500,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-jira-wiki-markup-1.0.0.tar.gz" -o aarch64-jira-wiki-markup-1.0.0.tar.gz
+        MIME=`file -b --mine-type aarch64-jira-wiki-markup-1.0.0.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -468,6 +538,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-pandoc-types-1.20.tar.gz" -o aarch64-pandoc-types-1.20.tar.gz
+        MIME=`file -b --mine-type aarch64-pandoc-types-1.20.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -501,6 +576,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-pandoc-types-1.20.tar.gz" -o aarch64-pandoc-types-1.20.tar.gz
+        MIME=`file -b --mine-type aarch64-pandoc-types-1.20.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -534,6 +614,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz" -o aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
+        MIME=`file -b --mine-type aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -567,6 +652,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz" -o aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz
+        MIME=`file -b --mine-type aarch64-regex-pcre-builtin-0.95.0.8.8.35.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -600,6 +690,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-roman-numerals-0.5.1.5.tar.gz" -o aarch64-roman-numerals-0.5.1.5.tar.gz
+        MIME=`file -b --mine-type aarch64-roman-numerals-0.5.1.5.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -633,6 +728,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-roman-numerals-0.5.1.5.tar.gz" -o aarch64-roman-numerals-0.5.1.5.tar.gz
+        MIME=`file -b --mine-type aarch64-roman-numerals-0.5.1.5.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -666,6 +766,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-skylighting-0.8.3.2.tar.gz" -o aarch64-skylighting-0.8.3.2.tar.gz
+        MIME=`file -b --mine-type aarch64-skylighting-0.8.3.2.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -699,6 +804,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-skylighting-0.8.3.2.tar.gz" -o aarch64-skylighting-0.8.3.2.tar.gz
+        MIME=`file -b --mine-type aarch64-skylighting-0.8.3.2.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -732,6 +842,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-skylighting-core-0.8.3.2.tar.gz" -o aarch64-skylighting-core-0.8.3.2.tar.gz
+        MIME=`file -b --mine-type aarch64-skylighting-core-0.8.3.2.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -765,6 +880,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-skylighting-core-0.8.3.2.tar.gz" -o aarch64-skylighting-core-0.8.3.2.tar.gz
+        MIME=`file -b --mine-type aarch64-skylighting-core-0.8.3.2.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -798,6 +918,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-texmath-0.12.tar.gz" -o aarch64-texmath-0.12.tar.gz
+        MIME=`file -b --mine-type aarch64-texmath-0.12.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -831,6 +956,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-texmath-0.12.tar.gz" -o aarch64-texmath-0.12.tar.gz
+        MIME=`file -b --mine-type aarch64-texmath-0.12.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -864,6 +994,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-texmath-0.12.0.1.tar.gz" -o aarch64-texmath-0.12.0.1.tar.gz
+        MIME=`file -b --mine-type aarch64-texmath-0.12.0.1.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -897,6 +1032,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-texmath-0.12.0.1.tar.gz" -o aarch64-texmath-0.12.0.1.tar.gz
+        MIME=`file -b --mine-type aarch64-texmath-0.12.0.1.tar.gz`
+        [ "$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update

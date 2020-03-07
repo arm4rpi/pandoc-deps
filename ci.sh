@@ -19,6 +19,11 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-$id.tar.gz" -o aarch64-$id.tar.gz
+        MIME=\`file -b --mine-type aarch64-$id.tar.gz\`
+        [ "\$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
@@ -52,6 +57,11 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: check if exists
+      run: |
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-$id.tar.gz" -o aarch64-$id.tar.gz
+        MIME=\`file -b --mine-type aarch64-$id.tar.gz\`
+        [ "\$MIME"x == "application/x-gzip"x ] && echo "Already exists" && exit 78
     - name: build
       run: |
         sudo apt-get update
