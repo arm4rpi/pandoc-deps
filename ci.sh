@@ -38,13 +38,15 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /$id
-    - name: release
-      run: |
-        ls -l
-        export ID=\`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print \$2}' |tr -d ','\`
-        curl -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/\$ID/assets?name=aarch64-$id.tar.gz" --data-binary @rootfs/aarch64-$id.tar.gz
-        exit \$?
-
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-$id.tar.gz
+        asset_path: ./rootfs/aarch64-$id.tar.gz
+        asset_content_type: application/x-gzip
 
   armv7l-$jobid:
     runs-on: ubuntu-latest
@@ -69,11 +71,14 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
         sudo mount -t proc proc proc
         echo "chroot to arm"
         sudo chroot . /$id
-    - name: release
-      run: |
-        ls -l
-        export ID=\`curl -s -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/arm4rpi/pandoc-deps/releases/tags/v0.1" |grep '"id"' |head -n 1 |awk '{print \$2}' |tr -d ','\`
-        curl -H "Authorization: token \${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/\$ID/assets?name=armv7l-$id.tar.gz" --data-binary @rootfs/armv7l-$id.tar.gz
-        exit \$?
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-$id.tar.gz
+        asset_path: ./rootfs/armv7l-$id.tar.gz
+        asset_content_type: application/x-gzip
 EOF
 done
