@@ -44,7 +44,7 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
       env:
         GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets
+        upload_url: https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-$id.tar.gz
         asset_path: ./rootfs/aarch64-$id.tar.gz
         asset_name: aarch64-$id.tar.gz
         asset_content_type: application/x-gzip
@@ -78,7 +78,7 @@ for id in `cat deps.txt |sed '/^$/d'|grep -v "#" |sort -u`;do
       env:
         GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets
+        upload_url: https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-$id.tar.gz
         asset_path: ./rootfs/armv7l-$id.tar.gz
         asset_name: armv7l-$id.tar.gz
         asset_content_type: application/x-gzip
