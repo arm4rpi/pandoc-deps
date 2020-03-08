@@ -4,3 +4,10 @@
 
 prebuilt pandoc deps for CI. use for https://github.com/arm4rpi/pandoc-arm
 
+
+These deps are build with Github Actions. Before build pandoc, need update the `.cabal` directory. For example, if build with root user:
+
+```
+sed -i 's/\/home\/runner/\/root/g' /root/.cabal/store/ghc-8.6.5/package.db/*.conf
+ghc-pkg recache -v -f /root/.cabal/store/ghc-8.6.5/package.db/
+```
