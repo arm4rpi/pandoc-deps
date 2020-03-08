@@ -2,6 +2,1086 @@ name: Pandoc Arm Deps
 on: [push]
 jobs:
 
+  aarch64-aeson-pretty-0_8_8:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-aeson-pretty-0.8.8.tar.gz" -o rootfs/aarch64-aeson-pretty-0.8.8.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-aeson-pretty-0.8.8.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh aeson-pretty-0.8.8
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /aeson-pretty-0.8.8
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-aeson-pretty-0.8.8.tar.gz" --data-binary @aarch64-aeson-pretty-0.8.8.tar.gz
+
+  armv7l-aeson-pretty-0_8_8:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-aeson-pretty-0.8.8.tar.gz" -o rootfs/armv7l-aeson-pretty-0.8.8.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-aeson-pretty-0.8.8.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh aeson-pretty-0.8.8
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /aeson-pretty-0.8.8
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-aeson-pretty-0.8.8.tar.gz" --data-binary @armv7l-aeson-pretty-0.8.8.tar.gz
+
+  aarch64-asn1-encoding-0_9_6:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-asn1-encoding-0.9.6.tar.gz" -o rootfs/aarch64-asn1-encoding-0.9.6.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-asn1-encoding-0.9.6.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh asn1-encoding-0.9.6
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /asn1-encoding-0.9.6
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-asn1-encoding-0.9.6.tar.gz" --data-binary @aarch64-asn1-encoding-0.9.6.tar.gz
+
+  armv7l-asn1-encoding-0_9_6:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-asn1-encoding-0.9.6.tar.gz" -o rootfs/armv7l-asn1-encoding-0.9.6.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-asn1-encoding-0.9.6.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh asn1-encoding-0.9.6
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /asn1-encoding-0.9.6
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-asn1-encoding-0.9.6.tar.gz" --data-binary @armv7l-asn1-encoding-0.9.6.tar.gz
+
+  aarch64-asn1-parse-0_9_5:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-asn1-parse-0.9.5.tar.gz" -o rootfs/aarch64-asn1-parse-0.9.5.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-asn1-parse-0.9.5.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh asn1-parse-0.9.5
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /asn1-parse-0.9.5
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-asn1-parse-0.9.5.tar.gz" --data-binary @aarch64-asn1-parse-0.9.5.tar.gz
+
+  armv7l-asn1-parse-0_9_5:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-asn1-parse-0.9.5.tar.gz" -o rootfs/armv7l-asn1-parse-0.9.5.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-asn1-parse-0.9.5.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh asn1-parse-0.9.5
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /asn1-parse-0.9.5
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-asn1-parse-0.9.5.tar.gz" --data-binary @armv7l-asn1-parse-0.9.5.tar.gz
+
+  aarch64-asn1-types-0_3_3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-asn1-types-0.3.3.tar.gz" -o rootfs/aarch64-asn1-types-0.3.3.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-asn1-types-0.3.3.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh asn1-types-0.3.3
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /asn1-types-0.3.3
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-asn1-types-0.3.3.tar.gz" --data-binary @aarch64-asn1-types-0.3.3.tar.gz
+
+  armv7l-asn1-types-0_3_3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-asn1-types-0.3.3.tar.gz" -o rootfs/armv7l-asn1-types-0.3.3.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-asn1-types-0.3.3.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh asn1-types-0.3.3
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /asn1-types-0.3.3
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-asn1-types-0.3.3.tar.gz" --data-binary @armv7l-asn1-types-0.3.3.tar.gz
+
+  aarch64-async-2_2_2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-async-2.2.2.tar.gz" -o rootfs/aarch64-async-2.2.2.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-async-2.2.2.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh async-2.2.2
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /async-2.2.2
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-async-2.2.2.tar.gz" --data-binary @aarch64-async-2.2.2.tar.gz
+
+  armv7l-async-2_2_2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-async-2.2.2.tar.gz" -o rootfs/armv7l-async-2.2.2.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-async-2.2.2.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh async-2.2.2
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /async-2.2.2
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-async-2.2.2.tar.gz" --data-binary @armv7l-async-2.2.2.tar.gz
+
+  aarch64-basement-0_0_11:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-basement-0.0.11.tar.gz" -o rootfs/aarch64-basement-0.0.11.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-basement-0.0.11.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh basement-0.0.11
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /basement-0.0.11
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-basement-0.0.11.tar.gz" --data-binary @aarch64-basement-0.0.11.tar.gz
+
+  armv7l-basement-0_0_11:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-basement-0.0.11.tar.gz" -o rootfs/armv7l-basement-0.0.11.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-basement-0.0.11.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh basement-0.0.11
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /basement-0.0.11
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-basement-0.0.11.tar.gz" --data-binary @armv7l-basement-0.0.11.tar.gz
+
+  aarch64-bitarray-0_0_1_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-bitarray-0.0.1.1.tar.gz" -o rootfs/aarch64-bitarray-0.0.1.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-bitarray-0.0.1.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh bitarray-0.0.1.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /bitarray-0.0.1.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-bitarray-0.0.1.1.tar.gz" --data-binary @aarch64-bitarray-0.0.1.1.tar.gz
+
+  armv7l-bitarray-0_0_1_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-bitarray-0.0.1.1.tar.gz" -o rootfs/armv7l-bitarray-0.0.1.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-bitarray-0.0.1.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh bitarray-0.0.1.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /bitarray-0.0.1.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-bitarray-0.0.1.1.tar.gz" --data-binary @armv7l-bitarray-0.0.1.1.tar.gz
+
+  aarch64-cereal-0_5_8_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-cereal-0.5.8.1.tar.gz" -o rootfs/aarch64-cereal-0.5.8.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-cereal-0.5.8.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh cereal-0.5.8.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /cereal-0.5.8.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-cereal-0.5.8.1.tar.gz" --data-binary @aarch64-cereal-0.5.8.1.tar.gz
+
+  armv7l-cereal-0_5_8_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-cereal-0.5.8.1.tar.gz" -o rootfs/armv7l-cereal-0.5.8.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-cereal-0.5.8.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh cereal-0.5.8.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /cereal-0.5.8.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-cereal-0.5.8.1.tar.gz" --data-binary @armv7l-cereal-0.5.8.1.tar.gz
+
+  aarch64-cmark-gfm-0_2_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-cmark-gfm-0.2.1.tar.gz" -o rootfs/aarch64-cmark-gfm-0.2.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-cmark-gfm-0.2.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh cmark-gfm-0.2.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /cmark-gfm-0.2.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-cmark-gfm-0.2.1.tar.gz" --data-binary @aarch64-cmark-gfm-0.2.1.tar.gz
+
+  armv7l-cmark-gfm-0_2_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-cmark-gfm-0.2.1.tar.gz" -o rootfs/armv7l-cmark-gfm-0.2.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-cmark-gfm-0.2.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh cmark-gfm-0.2.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /cmark-gfm-0.2.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-cmark-gfm-0.2.1.tar.gz" --data-binary @armv7l-cmark-gfm-0.2.1.tar.gz
+
+  aarch64-connection-0_3_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-connection-0.3.1.tar.gz" -o rootfs/aarch64-connection-0.3.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-connection-0.3.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh connection-0.3.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /connection-0.3.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-connection-0.3.1.tar.gz" --data-binary @aarch64-connection-0.3.1.tar.gz
+
+  armv7l-connection-0_3_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-connection-0.3.1.tar.gz" -o rootfs/armv7l-connection-0.3.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-connection-0.3.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh connection-0.3.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /connection-0.3.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-connection-0.3.1.tar.gz" --data-binary @armv7l-connection-0.3.1.tar.gz
+
+  aarch64-cookie-0_4_5:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-cookie-0.4.5.tar.gz" -o rootfs/aarch64-cookie-0.4.5.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-cookie-0.4.5.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh cookie-0.4.5
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /cookie-0.4.5
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-cookie-0.4.5.tar.gz" --data-binary @aarch64-cookie-0.4.5.tar.gz
+
+  armv7l-cookie-0_4_5:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-cookie-0.4.5.tar.gz" -o rootfs/armv7l-cookie-0.4.5.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-cookie-0.4.5.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh cookie-0.4.5
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /cookie-0.4.5
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-cookie-0.4.5.tar.gz" --data-binary @armv7l-cookie-0.4.5.tar.gz
+
+  aarch64-cryptonite-0_26:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-cryptonite-0.26.tar.gz" -o rootfs/aarch64-cryptonite-0.26.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-cryptonite-0.26.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh cryptonite-0.26
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /cryptonite-0.26
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-cryptonite-0.26.tar.gz" --data-binary @aarch64-cryptonite-0.26.tar.gz
+
+  armv7l-cryptonite-0_26:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-cryptonite-0.26.tar.gz" -o rootfs/armv7l-cryptonite-0.26.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-cryptonite-0.26.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh cryptonite-0.26
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /cryptonite-0.26
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-cryptonite-0.26.tar.gz" --data-binary @armv7l-cryptonite-0.26.tar.gz
+
+  aarch64-data-default-0_7_1_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-data-default-0.7.1.1.tar.gz" -o rootfs/aarch64-data-default-0.7.1.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-data-default-0.7.1.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh data-default-0.7.1.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /data-default-0.7.1.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-data-default-0.7.1.1.tar.gz" --data-binary @aarch64-data-default-0.7.1.1.tar.gz
+
+  armv7l-data-default-0_7_1_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-data-default-0.7.1.1.tar.gz" -o rootfs/armv7l-data-default-0.7.1.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-data-default-0.7.1.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh data-default-0.7.1.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /data-default-0.7.1.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-data-default-0.7.1.1.tar.gz" --data-binary @armv7l-data-default-0.7.1.1.tar.gz
+
+  aarch64-data-default-class-0_1_2_0:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-data-default-class-0.1.2.0.tar.gz" -o rootfs/aarch64-data-default-class-0.1.2.0.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-data-default-class-0.1.2.0.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh data-default-class-0.1.2.0
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /data-default-class-0.1.2.0
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-data-default-class-0.1.2.0.tar.gz" --data-binary @aarch64-data-default-class-0.1.2.0.tar.gz
+
+  armv7l-data-default-class-0_1_2_0:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-data-default-class-0.1.2.0.tar.gz" -o rootfs/armv7l-data-default-class-0.1.2.0.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-data-default-class-0.1.2.0.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh data-default-class-0.1.2.0
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /data-default-class-0.1.2.0
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-data-default-class-0.1.2.0.tar.gz" --data-binary @armv7l-data-default-class-0.1.2.0.tar.gz
+
+  aarch64-data-default-instances-containers-0_0_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-data-default-instances-containers-0.0.1.tar.gz" -o rootfs/aarch64-data-default-instances-containers-0.0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-data-default-instances-containers-0.0.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh data-default-instances-containers-0.0.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /data-default-instances-containers-0.0.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-data-default-instances-containers-0.0.1.tar.gz" --data-binary @aarch64-data-default-instances-containers-0.0.1.tar.gz
+
+  armv7l-data-default-instances-containers-0_0_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-data-default-instances-containers-0.0.1.tar.gz" -o rootfs/armv7l-data-default-instances-containers-0.0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-data-default-instances-containers-0.0.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh data-default-instances-containers-0.0.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /data-default-instances-containers-0.0.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-data-default-instances-containers-0.0.1.tar.gz" --data-binary @armv7l-data-default-instances-containers-0.0.1.tar.gz
+
+  aarch64-data-default-instances-dlist-0_0_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-data-default-instances-dlist-0.0.1.tar.gz" -o rootfs/aarch64-data-default-instances-dlist-0.0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-data-default-instances-dlist-0.0.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh data-default-instances-dlist-0.0.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /data-default-instances-dlist-0.0.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-data-default-instances-dlist-0.0.1.tar.gz" --data-binary @aarch64-data-default-instances-dlist-0.0.1.tar.gz
+
+  armv7l-data-default-instances-dlist-0_0_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-data-default-instances-dlist-0.0.1.tar.gz" -o rootfs/armv7l-data-default-instances-dlist-0.0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-data-default-instances-dlist-0.0.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh data-default-instances-dlist-0.0.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /data-default-instances-dlist-0.0.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-data-default-instances-dlist-0.0.1.tar.gz" --data-binary @armv7l-data-default-instances-dlist-0.0.1.tar.gz
+
+  aarch64-data-default-instances-old-locale-0_0_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-data-default-instances-old-locale-0.0.1.tar.gz" -o rootfs/aarch64-data-default-instances-old-locale-0.0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-data-default-instances-old-locale-0.0.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh data-default-instances-old-locale-0.0.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /data-default-instances-old-locale-0.0.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-data-default-instances-old-locale-0.0.1.tar.gz" --data-binary @aarch64-data-default-instances-old-locale-0.0.1.tar.gz
+
+  armv7l-data-default-instances-old-locale-0_0_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-data-default-instances-old-locale-0.0.1.tar.gz" -o rootfs/armv7l-data-default-instances-old-locale-0.0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-data-default-instances-old-locale-0.0.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh data-default-instances-old-locale-0.0.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /data-default-instances-old-locale-0.0.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-data-default-instances-old-locale-0.0.1.tar.gz" --data-binary @armv7l-data-default-instances-old-locale-0.0.1.tar.gz
+
+  aarch64-digest-0_0_1_2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-digest-0.0.1.2.tar.gz" -o rootfs/aarch64-digest-0.0.1.2.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-digest-0.0.1.2.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh digest-0.0.1.2
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /digest-0.0.1.2
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-digest-0.0.1.2.tar.gz" --data-binary @aarch64-digest-0.0.1.2.tar.gz
+
+  armv7l-digest-0_0_1_2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-digest-0.0.1.2.tar.gz" -o rootfs/armv7l-digest-0.0.1.2.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-digest-0.0.1.2.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh digest-0.0.1.2
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /digest-0.0.1.2
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-digest-0.0.1.2.tar.gz" --data-binary @armv7l-digest-0.0.1.2.tar.gz
+
   aarch64-doclayout-0_3:
     runs-on: ubuntu-latest
     steps:
@@ -182,6 +1262,186 @@ jobs:
         echo "Upload Asset"
         curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-emojis-0.1.tar.gz" --data-binary @armv7l-emojis-0.1.tar.gz
 
+  aarch64-fail-4_9_0_0:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-fail-4.9.0.0.tar.gz" -o rootfs/aarch64-fail-4.9.0.0.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-fail-4.9.0.0.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh fail-4.9.0.0
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /fail-4.9.0.0
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-fail-4.9.0.0.tar.gz" --data-binary @aarch64-fail-4.9.0.0.tar.gz
+
+  armv7l-fail-4_9_0_0:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-fail-4.9.0.0.tar.gz" -o rootfs/armv7l-fail-4.9.0.0.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-fail-4.9.0.0.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh fail-4.9.0.0
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /fail-4.9.0.0
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-fail-4.9.0.0.tar.gz" --data-binary @armv7l-fail-4.9.0.0.tar.gz
+
+  aarch64-file-embed-0_0_11_2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-file-embed-0.0.11.2.tar.gz" -o rootfs/aarch64-file-embed-0.0.11.2.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-file-embed-0.0.11.2.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh file-embed-0.0.11.2
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /file-embed-0.0.11.2
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-file-embed-0.0.11.2.tar.gz" --data-binary @aarch64-file-embed-0.0.11.2.tar.gz
+
+  armv7l-file-embed-0_0_11_2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-file-embed-0.0.11.2.tar.gz" -o rootfs/armv7l-file-embed-0.0.11.2.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-file-embed-0.0.11.2.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh file-embed-0.0.11.2
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /file-embed-0.0.11.2
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-file-embed-0.0.11.2.tar.gz" --data-binary @armv7l-file-embed-0.0.11.2.tar.gz
+
+  aarch64-Glob-0_10_0:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-Glob-0.10.0.tar.gz" -o rootfs/aarch64-Glob-0.10.0.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-Glob-0.10.0.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh Glob-0.10.0
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /Glob-0.10.0
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-Glob-0.10.0.tar.gz" --data-binary @aarch64-Glob-0.10.0.tar.gz
+
+  armv7l-Glob-0_10_0:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-Glob-0.10.0.tar.gz" -o rootfs/armv7l-Glob-0.10.0.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-Glob-0.10.0.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh Glob-0.10.0
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /Glob-0.10.0
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-Glob-0.10.0.tar.gz" --data-binary @armv7l-Glob-0.10.0.tar.gz
+
   aarch64-haddock-library-1_8_0:
     runs-on: ubuntu-latest
     steps:
@@ -241,6 +1501,306 @@ jobs:
         sudo chroot . /haddock-library-1.8.0
         echo "Upload Asset"
         curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-haddock-library-1.8.0.tar.gz" --data-binary @armv7l-haddock-library-1.8.0.tar.gz
+
+  aarch64-hourglass-0_2_12:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-hourglass-0.2.12.tar.gz" -o rootfs/aarch64-hourglass-0.2.12.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-hourglass-0.2.12.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh hourglass-0.2.12
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /hourglass-0.2.12
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-hourglass-0.2.12.tar.gz" --data-binary @aarch64-hourglass-0.2.12.tar.gz
+
+  armv7l-hourglass-0_2_12:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-hourglass-0.2.12.tar.gz" -o rootfs/armv7l-hourglass-0.2.12.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-hourglass-0.2.12.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh hourglass-0.2.12
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /hourglass-0.2.12
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-hourglass-0.2.12.tar.gz" --data-binary @armv7l-hourglass-0.2.12.tar.gz
+
+  aarch64-hsc2hs-0_68_6:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-hsc2hs-0.68.6.tar.gz" -o rootfs/aarch64-hsc2hs-0.68.6.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-hsc2hs-0.68.6.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh hsc2hs-0.68.6
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /hsc2hs-0.68.6
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-hsc2hs-0.68.6.tar.gz" --data-binary @aarch64-hsc2hs-0.68.6.tar.gz
+
+  armv7l-hsc2hs-0_68_6:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-hsc2hs-0.68.6.tar.gz" -o rootfs/armv7l-hsc2hs-0.68.6.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-hsc2hs-0.68.6.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh hsc2hs-0.68.6
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /hsc2hs-0.68.6
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-hsc2hs-0.68.6.tar.gz" --data-binary @armv7l-hsc2hs-0.68.6.tar.gz
+
+  aarch64-hslua-1_0_3_2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-hslua-1.0.3.2.tar.gz" -o rootfs/aarch64-hslua-1.0.3.2.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-hslua-1.0.3.2.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh hslua-1.0.3.2
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /hslua-1.0.3.2
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-hslua-1.0.3.2.tar.gz" --data-binary @aarch64-hslua-1.0.3.2.tar.gz
+
+  armv7l-hslua-1_0_3_2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-hslua-1.0.3.2.tar.gz" -o rootfs/armv7l-hslua-1.0.3.2.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-hslua-1.0.3.2.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh hslua-1.0.3.2
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /hslua-1.0.3.2
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-hslua-1.0.3.2.tar.gz" --data-binary @armv7l-hslua-1.0.3.2.tar.gz
+
+  aarch64-hslua-module-system-0_2_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-hslua-module-system-0.2.1.tar.gz" -o rootfs/aarch64-hslua-module-system-0.2.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-hslua-module-system-0.2.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh hslua-module-system-0.2.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /hslua-module-system-0.2.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-hslua-module-system-0.2.1.tar.gz" --data-binary @aarch64-hslua-module-system-0.2.1.tar.gz
+
+  armv7l-hslua-module-system-0_2_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-hslua-module-system-0.2.1.tar.gz" -o rootfs/armv7l-hslua-module-system-0.2.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-hslua-module-system-0.2.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh hslua-module-system-0.2.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /hslua-module-system-0.2.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-hslua-module-system-0.2.1.tar.gz" --data-binary @armv7l-hslua-module-system-0.2.1.tar.gz
+
+  aarch64-hslua-module-text-0_2_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-hslua-module-text-0.2.1.tar.gz" -o rootfs/aarch64-hslua-module-text-0.2.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-hslua-module-text-0.2.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh hslua-module-text-0.2.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /hslua-module-text-0.2.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-hslua-module-text-0.2.1.tar.gz" --data-binary @aarch64-hslua-module-text-0.2.1.tar.gz
+
+  armv7l-hslua-module-text-0_2_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-hslua-module-text-0.2.1.tar.gz" -o rootfs/armv7l-hslua-module-text-0.2.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-hslua-module-text-0.2.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh hslua-module-text-0.2.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /hslua-module-text-0.2.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-hslua-module-text-0.2.1.tar.gz" --data-binary @armv7l-hslua-module-text-0.2.1.tar.gz
 
   aarch64-HsYAML-0_2_0_0:
     runs-on: ubuntu-latest
@@ -362,6 +1922,306 @@ jobs:
         echo "Upload Asset"
         curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-HsYAML-aeson-0.2.0.0.tar.gz" --data-binary @armv7l-HsYAML-aeson-0.2.0.0.tar.gz
 
+  aarch64-HTTP-4000_3_14:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-HTTP-4000.3.14.tar.gz" -o rootfs/aarch64-HTTP-4000.3.14.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-HTTP-4000.3.14.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh HTTP-4000.3.14
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /HTTP-4000.3.14
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-HTTP-4000.3.14.tar.gz" --data-binary @aarch64-HTTP-4000.3.14.tar.gz
+
+  armv7l-HTTP-4000_3_14:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-HTTP-4000.3.14.tar.gz" -o rootfs/armv7l-HTTP-4000.3.14.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-HTTP-4000.3.14.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh HTTP-4000.3.14
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /HTTP-4000.3.14
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-HTTP-4000.3.14.tar.gz" --data-binary @armv7l-HTTP-4000.3.14.tar.gz
+
+  aarch64-http-client-0_6_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-http-client-0.6.4.tar.gz" -o rootfs/aarch64-http-client-0.6.4.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-http-client-0.6.4.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh http-client-0.6.4
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /http-client-0.6.4
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-http-client-0.6.4.tar.gz" --data-binary @aarch64-http-client-0.6.4.tar.gz
+
+  armv7l-http-client-0_6_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-http-client-0.6.4.tar.gz" -o rootfs/armv7l-http-client-0.6.4.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-http-client-0.6.4.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh http-client-0.6.4
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /http-client-0.6.4
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-http-client-0.6.4.tar.gz" --data-binary @armv7l-http-client-0.6.4.tar.gz
+
+  aarch64-http-client-tls-0_3_5_3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-http-client-tls-0.3.5.3.tar.gz" -o rootfs/aarch64-http-client-tls-0.3.5.3.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-http-client-tls-0.3.5.3.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh http-client-tls-0.3.5.3
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /http-client-tls-0.3.5.3
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-http-client-tls-0.3.5.3.tar.gz" --data-binary @aarch64-http-client-tls-0.3.5.3.tar.gz
+
+  armv7l-http-client-tls-0_3_5_3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-http-client-tls-0.3.5.3.tar.gz" -o rootfs/armv7l-http-client-tls-0.3.5.3.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-http-client-tls-0.3.5.3.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh http-client-tls-0.3.5.3
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /http-client-tls-0.3.5.3
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-http-client-tls-0.3.5.3.tar.gz" --data-binary @armv7l-http-client-tls-0.3.5.3.tar.gz
+
+  aarch64-http-types-0_12_3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-http-types-0.12.3.tar.gz" -o rootfs/aarch64-http-types-0.12.3.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-http-types-0.12.3.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh http-types-0.12.3
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /http-types-0.12.3
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-http-types-0.12.3.tar.gz" --data-binary @aarch64-http-types-0.12.3.tar.gz
+
+  armv7l-http-types-0_12_3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-http-types-0.12.3.tar.gz" -o rootfs/armv7l-http-types-0.12.3.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-http-types-0.12.3.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh http-types-0.12.3
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /http-types-0.12.3
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-http-types-0.12.3.tar.gz" --data-binary @armv7l-http-types-0.12.3.tar.gz
+
+  aarch64-ipynb-0_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-ipynb-0.1.tar.gz" -o rootfs/aarch64-ipynb-0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-ipynb-0.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh ipynb-0.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /ipynb-0.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-ipynb-0.1.tar.gz" --data-binary @aarch64-ipynb-0.1.tar.gz
+
+  armv7l-ipynb-0_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-ipynb-0.1.tar.gz" -o rootfs/armv7l-ipynb-0.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-ipynb-0.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh ipynb-0.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /ipynb-0.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-ipynb-0.1.tar.gz" --data-binary @armv7l-ipynb-0.1.tar.gz
+
   aarch64-jira-wiki-markup-1_0_0:
     runs-on: ubuntu-latest
     steps:
@@ -422,6 +2282,306 @@ jobs:
         echo "Upload Asset"
         curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-jira-wiki-markup-1.0.0.tar.gz" --data-binary @armv7l-jira-wiki-markup-1.0.0.tar.gz
 
+  aarch64-JuicyPixels-3_3_5:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-JuicyPixels-3.3.5.tar.gz" -o rootfs/aarch64-JuicyPixels-3.3.5.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-JuicyPixels-3.3.5.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh JuicyPixels-3.3.5
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /JuicyPixels-3.3.5
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-JuicyPixels-3.3.5.tar.gz" --data-binary @aarch64-JuicyPixels-3.3.5.tar.gz
+
+  armv7l-JuicyPixels-3_3_5:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-JuicyPixels-3.3.5.tar.gz" -o rootfs/armv7l-JuicyPixels-3.3.5.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-JuicyPixels-3.3.5.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh JuicyPixels-3.3.5
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /JuicyPixels-3.3.5
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-JuicyPixels-3.3.5.tar.gz" --data-binary @armv7l-JuicyPixels-3.3.5.tar.gz
+
+  aarch64-memory-0_15_0:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-memory-0.15.0.tar.gz" -o rootfs/aarch64-memory-0.15.0.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-memory-0.15.0.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh memory-0.15.0
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /memory-0.15.0
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-memory-0.15.0.tar.gz" --data-binary @aarch64-memory-0.15.0.tar.gz
+
+  armv7l-memory-0_15_0:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-memory-0.15.0.tar.gz" -o rootfs/armv7l-memory-0.15.0.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-memory-0.15.0.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh memory-0.15.0
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /memory-0.15.0
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-memory-0.15.0.tar.gz" --data-binary @armv7l-memory-0.15.0.tar.gz
+
+  aarch64-mime-types-0_1_0_9:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-mime-types-0.1.0.9.tar.gz" -o rootfs/aarch64-mime-types-0.1.0.9.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-mime-types-0.1.0.9.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh mime-types-0.1.0.9
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /mime-types-0.1.0.9
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-mime-types-0.1.0.9.tar.gz" --data-binary @aarch64-mime-types-0.1.0.9.tar.gz
+
+  armv7l-mime-types-0_1_0_9:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-mime-types-0.1.0.9.tar.gz" -o rootfs/armv7l-mime-types-0.1.0.9.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-mime-types-0.1.0.9.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh mime-types-0.1.0.9
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /mime-types-0.1.0.9
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-mime-types-0.1.0.9.tar.gz" --data-binary @armv7l-mime-types-0.1.0.9.tar.gz
+
+  aarch64-network-3_1_1_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-network-3.1.1.1.tar.gz" -o rootfs/aarch64-network-3.1.1.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-network-3.1.1.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh network-3.1.1.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /network-3.1.1.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-network-3.1.1.1.tar.gz" --data-binary @aarch64-network-3.1.1.1.tar.gz
+
+  armv7l-network-3_1_1_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-network-3.1.1.1.tar.gz" -o rootfs/armv7l-network-3.1.1.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-network-3.1.1.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh network-3.1.1.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /network-3.1.1.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-network-3.1.1.1.tar.gz" --data-binary @armv7l-network-3.1.1.1.tar.gz
+
+  aarch64-old-locale-1_0_0_7:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-old-locale-1.0.0.7.tar.gz" -o rootfs/aarch64-old-locale-1.0.0.7.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-old-locale-1.0.0.7.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh old-locale-1.0.0.7
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /old-locale-1.0.0.7
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-old-locale-1.0.0.7.tar.gz" --data-binary @aarch64-old-locale-1.0.0.7.tar.gz
+
+  armv7l-old-locale-1_0_0_7:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-old-locale-1.0.0.7.tar.gz" -o rootfs/armv7l-old-locale-1.0.0.7.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-old-locale-1.0.0.7.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh old-locale-1.0.0.7
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /old-locale-1.0.0.7
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-old-locale-1.0.0.7.tar.gz" --data-binary @armv7l-old-locale-1.0.0.7.tar.gz
+
   aarch64-pandoc-types-1_20:
     runs-on: ubuntu-latest
     steps:
@@ -481,6 +2641,66 @@ jobs:
         sudo chroot . /pandoc-types-1.20
         echo "Upload Asset"
         curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-pandoc-types-1.20.tar.gz" --data-binary @armv7l-pandoc-types-1.20.tar.gz
+
+  aarch64-pem-0_2_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-pem-0.2.4.tar.gz" -o rootfs/aarch64-pem-0.2.4.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-pem-0.2.4.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh pem-0.2.4
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /pem-0.2.4
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-pem-0.2.4.tar.gz" --data-binary @aarch64-pem-0.2.4.tar.gz
+
+  armv7l-pem-0_2_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-pem-0.2.4.tar.gz" -o rootfs/armv7l-pem-0.2.4.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-pem-0.2.4.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh pem-0.2.4
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /pem-0.2.4
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-pem-0.2.4.tar.gz" --data-binary @armv7l-pem-0.2.4.tar.gz
 
   aarch64-regex-pcre-builtin-0_95_0_8_8_35:
     runs-on: ubuntu-latest
@@ -602,6 +2822,66 @@ jobs:
         echo "Upload Asset"
         curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-roman-numerals-0.5.1.5.tar.gz" --data-binary @armv7l-roman-numerals-0.5.1.5.tar.gz
 
+  aarch64-SHA-1_6_4_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-SHA-1.6.4.4.tar.gz" -o rootfs/aarch64-SHA-1.6.4.4.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-SHA-1.6.4.4.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh SHA-1.6.4.4
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /SHA-1.6.4.4
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-SHA-1.6.4.4.tar.gz" --data-binary @aarch64-SHA-1.6.4.4.tar.gz
+
+  armv7l-SHA-1_6_4_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-SHA-1.6.4.4.tar.gz" -o rootfs/armv7l-SHA-1.6.4.4.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-SHA-1.6.4.4.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh SHA-1.6.4.4
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /SHA-1.6.4.4
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-SHA-1.6.4.4.tar.gz" --data-binary @armv7l-SHA-1.6.4.4.tar.gz
+
   aarch64-skylighting-0_8_3_2:
     runs-on: ubuntu-latest
     steps:
@@ -722,6 +3002,306 @@ jobs:
         echo "Upload Asset"
         curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-skylighting-core-0.8.3.2.tar.gz" --data-binary @armv7l-skylighting-core-0.8.3.2.tar.gz
 
+  aarch64-socks-0_6_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-socks-0.6.1.tar.gz" -o rootfs/aarch64-socks-0.6.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-socks-0.6.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh socks-0.6.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /socks-0.6.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-socks-0.6.1.tar.gz" --data-binary @aarch64-socks-0.6.1.tar.gz
+
+  armv7l-socks-0_6_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-socks-0.6.1.tar.gz" -o rootfs/armv7l-socks-0.6.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-socks-0.6.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh socks-0.6.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /socks-0.6.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-socks-0.6.1.tar.gz" --data-binary @armv7l-socks-0.6.1.tar.gz
+
+  aarch64-split-0_2_3_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-split-0.2.3.4.tar.gz" -o rootfs/aarch64-split-0.2.3.4.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-split-0.2.3.4.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh split-0.2.3.4
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /split-0.2.3.4
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-split-0.2.3.4.tar.gz" --data-binary @aarch64-split-0.2.3.4.tar.gz
+
+  armv7l-split-0_2_3_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-split-0.2.3.4.tar.gz" -o rootfs/armv7l-split-0.2.3.4.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-split-0.2.3.4.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh split-0.2.3.4
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /split-0.2.3.4
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-split-0.2.3.4.tar.gz" --data-binary @armv7l-split-0.2.3.4.tar.gz
+
+  aarch64-streaming-commons-0_2_1_2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-streaming-commons-0.2.1.2.tar.gz" -o rootfs/aarch64-streaming-commons-0.2.1.2.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-streaming-commons-0.2.1.2.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh streaming-commons-0.2.1.2
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /streaming-commons-0.2.1.2
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-streaming-commons-0.2.1.2.tar.gz" --data-binary @aarch64-streaming-commons-0.2.1.2.tar.gz
+
+  armv7l-streaming-commons-0_2_1_2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-streaming-commons-0.2.1.2.tar.gz" -o rootfs/armv7l-streaming-commons-0.2.1.2.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-streaming-commons-0.2.1.2.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh streaming-commons-0.2.1.2
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /streaming-commons-0.2.1.2
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-streaming-commons-0.2.1.2.tar.gz" --data-binary @armv7l-streaming-commons-0.2.1.2.tar.gz
+
+  aarch64-tagsoup-0_14_8:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-tagsoup-0.14.8.tar.gz" -o rootfs/aarch64-tagsoup-0.14.8.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-tagsoup-0.14.8.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh tagsoup-0.14.8
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /tagsoup-0.14.8
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-tagsoup-0.14.8.tar.gz" --data-binary @aarch64-tagsoup-0.14.8.tar.gz
+
+  armv7l-tagsoup-0_14_8:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-tagsoup-0.14.8.tar.gz" -o rootfs/armv7l-tagsoup-0.14.8.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-tagsoup-0.14.8.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh tagsoup-0.14.8
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /tagsoup-0.14.8
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-tagsoup-0.14.8.tar.gz" --data-binary @armv7l-tagsoup-0.14.8.tar.gz
+
+  aarch64-temporary-1_3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-temporary-1.3.tar.gz" -o rootfs/aarch64-temporary-1.3.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-temporary-1.3.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh temporary-1.3
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /temporary-1.3
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-temporary-1.3.tar.gz" --data-binary @aarch64-temporary-1.3.tar.gz
+
+  armv7l-temporary-1_3:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-temporary-1.3.tar.gz" -o rootfs/armv7l-temporary-1.3.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-temporary-1.3.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh temporary-1.3
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /temporary-1.3
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-temporary-1.3.tar.gz" --data-binary @armv7l-temporary-1.3.tar.gz
+
   aarch64-texmath-0_12:
     runs-on: ubuntu-latest
     steps:
@@ -841,3 +3421,483 @@ jobs:
         sudo chroot . /texmath-0.12.0.1
         echo "Upload Asset"
         curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-texmath-0.12.0.1.tar.gz" --data-binary @armv7l-texmath-0.12.0.1.tar.gz
+
+  aarch64-tls-1_5_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-tls-1.5.4.tar.gz" -o rootfs/aarch64-tls-1.5.4.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-tls-1.5.4.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh tls-1.5.4
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /tls-1.5.4
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-tls-1.5.4.tar.gz" --data-binary @aarch64-tls-1.5.4.tar.gz
+
+  armv7l-tls-1_5_4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-tls-1.5.4.tar.gz" -o rootfs/armv7l-tls-1.5.4.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-tls-1.5.4.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh tls-1.5.4
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /tls-1.5.4
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-tls-1.5.4.tar.gz" --data-binary @armv7l-tls-1.5.4.tar.gz
+
+  aarch64-unicode-transforms-0_3_6:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-unicode-transforms-0.3.6.tar.gz" -o rootfs/aarch64-unicode-transforms-0.3.6.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-unicode-transforms-0.3.6.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh unicode-transforms-0.3.6
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /unicode-transforms-0.3.6
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-unicode-transforms-0.3.6.tar.gz" --data-binary @aarch64-unicode-transforms-0.3.6.tar.gz
+
+  armv7l-unicode-transforms-0_3_6:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-unicode-transforms-0.3.6.tar.gz" -o rootfs/armv7l-unicode-transforms-0.3.6.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-unicode-transforms-0.3.6.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh unicode-transforms-0.3.6
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /unicode-transforms-0.3.6
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-unicode-transforms-0.3.6.tar.gz" --data-binary @armv7l-unicode-transforms-0.3.6.tar.gz
+
+  aarch64-x509-1_7_5:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-x509-1.7.5.tar.gz" -o rootfs/aarch64-x509-1.7.5.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-x509-1.7.5.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh x509-1.7.5
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /x509-1.7.5
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-x509-1.7.5.tar.gz" --data-binary @aarch64-x509-1.7.5.tar.gz
+
+  armv7l-x509-1_7_5:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-x509-1.7.5.tar.gz" -o rootfs/armv7l-x509-1.7.5.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-x509-1.7.5.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh x509-1.7.5
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /x509-1.7.5
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-x509-1.7.5.tar.gz" --data-binary @armv7l-x509-1.7.5.tar.gz
+
+  aarch64-x509-store-1_6_7:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-x509-store-1.6.7.tar.gz" -o rootfs/aarch64-x509-store-1.6.7.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-x509-store-1.6.7.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh x509-store-1.6.7
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /x509-store-1.6.7
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-x509-store-1.6.7.tar.gz" --data-binary @aarch64-x509-store-1.6.7.tar.gz
+
+  armv7l-x509-store-1_6_7:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-x509-store-1.6.7.tar.gz" -o rootfs/armv7l-x509-store-1.6.7.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-x509-store-1.6.7.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh x509-store-1.6.7
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /x509-store-1.6.7
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-x509-store-1.6.7.tar.gz" --data-binary @armv7l-x509-store-1.6.7.tar.gz
+
+  aarch64-x509-system-1_6_6:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-x509-system-1.6.6.tar.gz" -o rootfs/aarch64-x509-system-1.6.6.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-x509-system-1.6.6.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh x509-system-1.6.6
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /x509-system-1.6.6
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-x509-system-1.6.6.tar.gz" --data-binary @aarch64-x509-system-1.6.6.tar.gz
+
+  armv7l-x509-system-1_6_6:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-x509-system-1.6.6.tar.gz" -o rootfs/armv7l-x509-system-1.6.6.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-x509-system-1.6.6.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh x509-system-1.6.6
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /x509-system-1.6.6
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-x509-system-1.6.6.tar.gz" --data-binary @armv7l-x509-system-1.6.6.tar.gz
+
+  aarch64-x509-validation-1_6_11:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-x509-validation-1.6.11.tar.gz" -o rootfs/aarch64-x509-validation-1.6.11.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-x509-validation-1.6.11.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh x509-validation-1.6.11
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /x509-validation-1.6.11
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-x509-validation-1.6.11.tar.gz" --data-binary @aarch64-x509-validation-1.6.11.tar.gz
+
+  armv7l-x509-validation-1_6_11:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-x509-validation-1.6.11.tar.gz" -o rootfs/armv7l-x509-validation-1.6.11.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-x509-validation-1.6.11.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh x509-validation-1.6.11
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /x509-validation-1.6.11
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-x509-validation-1.6.11.tar.gz" --data-binary @armv7l-x509-validation-1.6.11.tar.gz
+
+  aarch64-zip-archive-0_4_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-zip-archive-0.4.1.tar.gz" -o rootfs/aarch64-zip-archive-0.4.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-zip-archive-0.4.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh zip-archive-0.4.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /zip-archive-0.4.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-zip-archive-0.4.1.tar.gz" --data-binary @aarch64-zip-archive-0.4.1.tar.gz
+
+  armv7l-zip-archive-0_4_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-zip-archive-0.4.1.tar.gz" -o rootfs/armv7l-zip-archive-0.4.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-zip-archive-0.4.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh zip-archive-0.4.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /zip-archive-0.4.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-zip-archive-0.4.1.tar.gz" --data-binary @armv7l-zip-archive-0.4.1.tar.gz
+
+  aarch64-zlib-0_6_2_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/aarch64-zlib-0.6.2.1.tar.gz" -o rootfs/aarch64-zlib-0.6.2.1.tar.gz
+        MIME=`file -b --mime-type rootfs/aarch64-zlib-0.6.2.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-arm64.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-arm64.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-aarch64-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh zlib-0.6.2.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /zlib-0.6.2.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=aarch64-zlib-0.6.2.1.tar.gz" --data-binary @aarch64-zlib-0.6.2.1.tar.gz
+
+  armv7l-zlib-0_6_2_1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        mkdir rootfs
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-zlib-0.6.2.1.tar.gz" -o rootfs/armv7l-zlib-0.6.2.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-zlib-0.6.2.1.tar.gz`
+        echo $MIME
+        [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
+        sudo apt-get update
+        sudo apt-get install -y qemu-user-static aria2
+        aria2c -x 16 http://cdimage.ubuntu.com/ubuntu-base/releases/19.10/release/ubuntu-base-19.10-base-armhf.tar.gz
+        cd rootfs
+        echo "decompression rootfs"
+        tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
+        cp /usr/bin/qemu-arm-static usr/bin
+        cp /etc/resolv.conf etc
+        cp ../build.sh zlib-0.6.2.1
+        sudo mount -t devtmpfs devtmpfs dev
+        sudo mount -t devpts devpts dev/pts
+        sudo mount -t sysfs sysfs sys
+        sudo mount -t tmpfs tmpfs tmp
+        sudo mount -t proc proc proc
+        echo "chroot to arm"
+        sudo chroot . /zlib-0.6.2.1
+        echo "Upload Asset"
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-zlib-0.6.2.1.tar.gz" --data-binary @armv7l-zlib-0.6.2.1.tar.gz
