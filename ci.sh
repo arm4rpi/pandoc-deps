@@ -1,12 +1,19 @@
 #!/bin/bash
 
 CIDIR=".github/workflows"
-CICONF="$CIDIR/main.yml"
+AARCH64CONF="$CIDIR/aarch64.yml"
+ARMV7LCONF="$CIDIR/armv7l.yml"
 
 [ ! -d $CIDIR ] && mkdir -p $CIDIR
 
-cat > $CICONF <<EOF
-name: Pandoc Arm Deps
+cat > $AARCH64CONF <<EOF
+name: Pandoc aarch64 Deps 
+on: [push]
+jobs:
+EOF
+
+cat > $ARMV7LCONF <<EOF
+name: Pandoc armv7l Deps 
 on: [push]
 jobs:
 EOF
@@ -17,7 +24,8 @@ function addJob() {
 	jobid=`echo $id|tr '.' '_'`
 	qemuarch=aarch64
 	ubuntuarch=arm64
-	[ "$arch"x == "armv7l"x ] && qemuarch="arm" && ubuntuarch="armhf"
+	CICONF=$AARCH64CONF
+	[ "$arch"x == "armv7l"x ] && qemuarch="arm" && ubuntuarch="armhf" && CICONF=$ARMV7LCONF
 
 	cat >> $CICONF <<EOF
 
