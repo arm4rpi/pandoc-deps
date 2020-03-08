@@ -6,7 +6,7 @@ ARCH=`arch`
 PKG=`basename $0`
 
 apt-get update
-apt-get install -y cabal-install
+apt-get install -y cabal-install pkg-config build-essential zlib1g-dev
 
 echo "I am `whoami`, I will build $ARCH-$PKG"
 echo "cabal init"
