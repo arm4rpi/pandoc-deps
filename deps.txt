@@ -55,7 +55,7 @@ socks-0.6.1
 HTTP-4000.3.14
 data-default-0.7.1.1
 asn1-encoding-0.9.6
-http-client-0.6.4
+http-client-0.6.4.1
 asn1-parse-0.9.5
 x509-1.7.5
 x509-store-1.6.7
