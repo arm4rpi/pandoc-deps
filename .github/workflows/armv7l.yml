@@ -1082,15 +1082,15 @@ jobs:
         echo "Upload Asset"
         curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-HTTP-4000.3.14.tar.gz" --data-binary @armv7l-HTTP-4000.3.14.tar.gz
 
-  armv7l-http-client-0_6_4:
+  armv7l-http-client-0_6_4_1:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: build
       run: |
         mkdir rootfs
-        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-http-client-0.6.4.tar.gz" -o rootfs/armv7l-http-client-0.6.4.tar.gz
-        MIME=`file -b --mime-type rootfs/armv7l-http-client-0.6.4.tar.gz`
+        curl -s -L "https://github.com/arm4rpi/pandoc-deps/releases/download/v0.1/armv7l-http-client-0.6.4.1.tar.gz" -o rootfs/armv7l-http-client-0.6.4.1.tar.gz
+        MIME=`file -b --mime-type rootfs/armv7l-http-client-0.6.4.1.tar.gz`
         echo $MIME
         [ "$MIME"x == "application/gzip"x ] && echo "Already exists" && exit 0 || echo "Not exists"
         sudo apt-get update
@@ -1101,16 +1101,16 @@ jobs:
         tar xvf ../ubuntu-base-19.10-base-armhf.tar.gz &>/dev/null && echo "decompression rootfs successfull"
         cp /usr/bin/qemu-arm-static usr/bin
         cp /etc/resolv.conf etc
-        cp ../build.sh http-client-0.6.4
+        cp ../build.sh http-client-0.6.4.1
         sudo mount -t devtmpfs devtmpfs dev
         sudo mount -t devpts devpts dev/pts
         sudo mount -t sysfs sysfs sys
         sudo mount -t tmpfs tmpfs tmp
         sudo mount -t proc proc proc
         echo "chroot to arm"
-        sudo chroot . /http-client-0.6.4
+        sudo chroot . /http-client-0.6.4.1
         echo "Upload Asset"
-        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-http-client-0.6.4.tar.gz" --data-binary @armv7l-http-client-0.6.4.tar.gz
+        curl -H "Authorization: token ${{ secrets.TOKEN }}" -H "Content-Type: application/x-gzip" "https://uploads.github.com/repos/arm4rpi/pandoc-deps/releases/24305294/assets?name=armv7l-http-client-0.6.4.1.tar.gz" --data-binary @armv7l-http-client-0.6.4.1.tar.gz
 
   armv7l-http-client-tls-0_3_5_3:
     runs-on: ubuntu-latest
